@@ -242,7 +242,7 @@
       });
     });
     function stop() {
-      if (timer !== null) { window.clearInterval(timer); timer = null; }
+      if (timer !== null) { window.clearTimeout(timer); timer = null; }
       progress.classList.remove('animating');
     }
     function start() {
@@ -251,7 +251,7 @@
       // Restart the CSS indicator each time a new project begins.
       void progress.offsetWidth;
       progress.classList.add('animating');
-      timer = window.setInterval(() => display(current + 1), interval);
+      timer = window.setTimeout(() => { display(current + 1); start(); }, interval);
     }
     function advance(index) {
       display(index);
@@ -259,8 +259,6 @@
     }
     next.addEventListener('click', () => advance(current + 1));
     dots.forEach((dot, index) => dot.addEventListener('click', () => advance(index)));
-    showcase.addEventListener('pointerenter', () => { paused = true; stop(); });
-    showcase.addEventListener('pointerleave', () => { paused = false; start(); });
     showcase.addEventListener('focusin', () => { paused = true; stop(); });
     showcase.addEventListener('focusout', event => {
       if (!showcase.contains(event.relatedTarget)) { paused = false; start(); }
