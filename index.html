@@ -37,9 +37,10 @@
     .logo-item {display:grid;place-items:center;width:clamp(72px,8.7vw,122px);height:clamp(86px,10vw,140px);flex:none}
     .logo-item img {width:clamp(65px,7.2vw,105px);height:clamp(65px,7.2vw,105px);display:block;object-fit:contain;transition:transform .3s ease,opacity .3s ease;opacity:.92}
     .logo-item:hover img {transform:scale(1.1);opacity:1}
+    .logo-item .name-logo {display:block;font-size:clamp(23px,3.2vw,42px);line-height:1;letter-spacing:-.075em;font-weight:750;color:#f6f6f6;white-space:nowrap;transition:transform .3s ease}
+    .logo-item:hover .name-logo {transform:scale(1.07)}
     @keyframes travel {from {transform:translate3d(0,0,0)}to {transform:translate3d(-50%,0,0)}}
     .copy {text-align:center;padding:0 24px;max-width:930px}
-    .eyebrow {display:inline-block;padding:8px 14px;border:1px solid #282828;border-radius:999px;font-size:10px;line-height:1;letter-spacing:.1em;font-weight:650;color:#c7c7c7}
     h1 {margin:24px 0 15px;font-size:clamp(38px,5.3vw,73px);line-height:1.14;letter-spacing:-.073em;font-weight:750}
     h1 em {font-family:Georgia,Times New Roman,serif;letter-spacing:-.065em;font-weight:400}
     .subtitle {margin:0 auto;max-width:560px;color:#999;font-size:clamp(12px,1.1vw,16px);line-height:1.85}
@@ -54,6 +55,7 @@
       .marquee-set {gap:85px;padding-right:85px}
       .logo-item {width:72px;height:90px}
       .logo-item img {width:63px;height:63px}
+      .logo-item .name-logo {font-size:clamp(24px,6.5vw,33px)}
       h1 {font-size:clamp(34px,9vw,55px);margin:18px 0 10px}
       .subtitle {font-size:12px;max-width:365px}
       .footer {font-size:8px;left:22px;right:22px;bottom:21px}
@@ -64,14 +66,14 @@
       .marquee {padding:0}
       .logo-item {height:68px}
       .logo-item img {width:55px;height:55px}
-      .eyebrow {font-size:8px;padding:6px 10px}
+      .logo-item .name-logo {font-size:24px}
       h1 {font-size:clamp(29px,5vh,45px);margin:10px 0 5px}
       .subtitle {font-size:10px;line-height:1.5}
       .footer {bottom:8px}
     }
     @media(prefers-reduced-motion:reduce){
       .marquee-track {animation:none;will-change:auto}
-      .logo-item img {transition:none}
+      .logo-item img,.logo-item .name-logo {transition:none}
     }
   </style>
 </head>
@@ -84,28 +86,27 @@
       <span class="nav-item">Est. 2026</span>
     </header>
     <main class="stage">
-      <section class="marquee" aria-label="Salem family projects: Mondoo and THE32">
+      <section class="marquee" aria-label="Salem projects: Mondoo, THE32, Roya, Noqta">
         <div class="marquee-track" aria-hidden="true">
           <div class="marquee-set">
             <span class="logo-item"><img src="assets/mondoo.svg" alt="" width="512" height="512"></span>
             <span class="logo-item"><img src="assets/the32.svg" alt="" width="150" height="150"></span>
-            <span class="logo-item"><img src="assets/mondoo.svg" alt="" width="512" height="512"></span>
-            <span class="logo-item"><img src="assets/the32.svg" alt="" width="150" height="150"></span>
+            <span class="logo-item"><span class="name-logo">Roya</span></span>
+            <span class="logo-item"><span class="name-logo">Noqta</span></span>
           </div>
           <div class="marquee-set">
             <span class="logo-item"><img src="assets/mondoo.svg" alt="" width="512" height="512"></span>
             <span class="logo-item"><img src="assets/the32.svg" alt="" width="150" height="150"></span>
-            <span class="logo-item"><img src="assets/mondoo.svg" alt="" width="512" height="512"></span>
-            <span class="logo-item"><img src="assets/the32.svg" alt="" width="150" height="150"></span>
+            <span class="logo-item"><span class="name-logo">Roya</span></span>
+            <span class="logo-item"><span class="name-logo">Noqta</span></span>
           </div>
         </div>
       </section>
       <section class="copy" aria-labelledby="page-title">
-        <span class="eyebrow">THE SALEM FAMILY</span>
         <h1 id="page-title">One family. <em>Infinite ideas.</em></h1>
         <p class="subtitle">A home for the people, ideas, and projects of the Salem family. Different minds, one shared name.</p>
       </section>
-      <div class="sr-only">Featured projects: Mondoo, a creative workspace at <a href="https://mondoo.ly">mondoo.ly</a>, and THE32, creative tools and visual experiments.</div>
+      <div class="sr-only">Featured projects: Mondoo, a creative workspace at <a href="https://mondoo.ly">mondoo.ly</a>; THE32, creative tools and visual experiments; Roya; and Noqta.</div>
     </main>
     <footer class="footer">
       <span>© 2026 SALEM</span>
