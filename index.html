@@ -24,7 +24,7 @@
     .page {min-height:0;height:100vh;height:100dvh;max-width:100%;display:flex;align-items:center;flex-direction:column;position:relative;isolation:isolate;overflow:hidden}
     .page::before {content:"";position:absolute;z-index:-1;pointer-events:none;inset:25% -10% 3%;background:radial-gradient(ellipse at 50% 46%,rgba(255,255,255,.05),transparent 63%)}
     .navigation {position:absolute;z-index:4;top:clamp(8px,2vh,20px);left:clamp(14px,3vw,36px);display:flex;align-items:center;justify-content:flex-start;width:max-content;min-height:58px;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
-    .brand {font-weight:800;letter-spacing:-.095em;font-size:22px;line-height:1;white-space:nowrap}
+    .brand {font-weight:800;letter-spacing:-.095em;font-size:30px;line-height:1;white-space:nowrap}
     .brand .dot {color:#858585}
     .stage {width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(100px,15vh,150px) 0 55px;gap:clamp(52px,9vh,96px)}
     .marquee {width:100%;overflow:hidden;position:relative;flex:none;padding:18px 0;mask-image:linear-gradient(to right,transparent 0%,black 10%,black 90%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,black 10%,black 90%,transparent 100%)}
@@ -46,7 +46,7 @@
     .sr-only {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     @media(max-width:720px){
       .navigation {left:14px;min-height:51px;padding:0}
-      .brand {font-size:20px}
+      .brand {font-size:27px}
       .stage {gap:clamp(28px,5vh,65px);padding:120px 0 65px}
       .marquee {padding:3px 0}
       .marquee-set {gap:75px;padding-right:75px}
