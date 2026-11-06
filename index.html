@@ -34,10 +34,9 @@
     .logo-item {display:flex;align-items:center;justify-content:center;min-width:clamp(90px,9vw,130px);width:max-content;height:clamp(86px,10vw,140px);flex:none}
     .logo-item img {width:clamp(65px,7.2vw,105px);height:clamp(65px,7.2vw,105px);display:block;object-fit:contain;transition:transform .3s ease,opacity .3s ease;opacity:.92}
     .logo-item:hover img {transform:scale(1.1);opacity:1}
-    .logo-item .name-logo {display:block;font-size:clamp(23px,3.2vw,42px);line-height:1;letter-spacing:-.075em;font-weight:750;color:#f6f6f6;white-space:nowrap;transition:transform .3s ease}
-    .logo-item:hover .name-logo {transform:scale(1.07)}
     .logo-item.brand-lockup {gap:clamp(12px,1.7vw,24px);min-width:0}
-    .brand-lockup .brand-name {font-size:clamp(32px,4vw,56px);font-weight:650;letter-spacing:-.075em;line-height:1;white-space:nowrap;color:#f6f6f6}
+    .logo-item .brand-name {font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:clamp(32px,4vw,56px);font-weight:650;letter-spacing:-.075em;line-height:1;white-space:nowrap;color:#f6f6f6;transition:transform .3s ease}
+    .logo-item:hover .brand-name {transform:scale(1.04)}
     .brand-lockup.the32 .brand-name {font-weight:800;letter-spacing:-.07em}
     @keyframes travel {from {transform:translate3d(0,0,0)}to {transform:translate3d(-50%,0,0)}}
     .copy {text-align:center;padding:0 24px;max-width:930px}
@@ -53,9 +52,8 @@
       .marquee-set {gap:75px;padding-right:75px}
       .logo-item {min-width:72px;height:90px}
       .logo-item img {width:63px;height:63px}
-      .logo-item .name-logo {font-size:clamp(24px,6.5vw,33px)}
       .logo-item.brand-lockup {gap:10px}
-      .brand-lockup .brand-name {font-size:31px}
+      .logo-item .brand-name {font-size:31px}
       .brand-lockup.the32 .brand-name {font-size:30px}
       h1 {font-size:clamp(34px,9vw,55px);margin:18px 0 10px}
       .footer {font-size:8px;left:22px;right:22px;bottom:21px}
@@ -66,14 +64,13 @@
       .marquee {padding:0}
       .logo-item {height:68px}
       .logo-item img {width:55px;height:55px}
-      .logo-item .name-logo {font-size:24px}
-      .brand-lockup .brand-name,.brand-lockup.the32 .brand-name {font-size:24px}
+      .logo-item .brand-name,.brand-lockup.the32 .brand-name {font-size:24px}
       h1 {font-size:clamp(29px,5vh,45px);margin:10px 0 5px}
       .footer {bottom:8px}
     }
     @media(prefers-reduced-motion:reduce){
       .marquee-track {animation:none;will-change:auto}
-      .logo-item img,.logo-item .name-logo {transition:none}
+      .logo-item img,.logo-item .brand-name {transition:none}
     }
   </style>
 </head>
@@ -88,14 +85,14 @@
           <div class="marquee-set">
             <span class="logo-item brand-lockup"><img src="assets/mondoo.svg" alt="" width="512" height="512"><span class="brand-name">mondoo</span></span>
             <span class="logo-item brand-lockup the32"><img src="assets/the32.svg" alt="" width="150" height="150"><span class="brand-name">THE32</span></span>
-            <span class="logo-item"><span class="name-logo">Roya</span></span>
-            <span class="logo-item"><span class="name-logo">Noqta</span></span>
+            <span class="logo-item"><span class="brand-name">Roya</span></span>
+            <span class="logo-item"><span class="brand-name">Noqta</span></span>
           </div>
           <div class="marquee-set">
             <span class="logo-item brand-lockup"><img src="assets/mondoo.svg" alt="" width="512" height="512"><span class="brand-name">mondoo</span></span>
             <span class="logo-item brand-lockup the32"><img src="assets/the32.svg" alt="" width="150" height="150"><span class="brand-name">THE32</span></span>
-            <span class="logo-item"><span class="name-logo">Roya</span></span>
-            <span class="logo-item"><span class="name-logo">Noqta</span></span>
+            <span class="logo-item"><span class="brand-name">Roya</span></span>
+            <span class="logo-item"><span class="brand-name">Noqta</span></span>
           </div>
         </div>
       </section>
