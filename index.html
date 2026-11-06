@@ -1,43 +1,238 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Salem</title>
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- React -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="Salem — one family, many ideas. Discover the people, projects, and creations of the Salem family.">
+  <meta property="og:title" content="Salem — One family. Infinite ideas.">
+  <meta property="og:description" content="A home for the projects and ideas of the Salem family.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="assets/salem-mark.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>Salem — Family & Projects</title>
+  <style>
+    :root{color-scheme:dark;--bg:#080808;--ink:#f7f7f5;--muted:#999;--line:#292929}
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,-apple-system,Segoe UI,sans-serif;-webkit-font-smoothing:antialiased}
+    ::selection{background:#f4f4f4;color:#080808}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    a:focus-visible{outline:2px solid #fff;outline-offset:6px;border-radius:3px}
+    .skip{position:fixed;top:-80px;left:20px;z-index:100;background:#fff;color:#000;padding:12px 18px}
+    .skip:focus{top:12px}
+    .progress{position:fixed;left:0;top:0;width:0;height:2px;background:#fff;z-index:99;pointer-events:none}
+    .site-header{position:fixed;z-index:40;inset:2px 0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;height:82px;padding:0 clamp(22px,5.6vw,88px);background:rgba(8,8,8,.75);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid rgba(255,255,255,.075)}
+    .brand{font-size:24px;line-height:1;font-weight:800;letter-spacing:-.09em}
+    .brand span{color:#888}
+    .nav{display:flex;gap:clamp(16px,3vw,37px);align-items:center}
+    .nav a{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#aaa;transition:color .2s ease}
+    .nav a:hover{color:#fff}
+    .nav .nav-outline{padding:12px 18px;border:1px solid #555;border-radius:999px;color:#f8f8f8}
+    .nav .nav-outline:hover{border-color:#fff}
+    .kicker{font-size:11px;letter-spacing:.27em;font-weight:700;color:#a4a4a4;text-transform:uppercase}
+    .hero{position:relative;display:flex;align-items:center;min-height:100svh;padding:130px clamp(24px,9vw,148px) 140px;isolation:isolate;overflow:hidden}
+    .hero::before{content:"";position:absolute;z-index:-1;left:12%;top:14%;width:min(95vw,900px);height:min(95vw,900px);background:radial-gradient(circle,rgba(255,255,255,.105),rgba(255,255,255,.017) 36%,transparent 68%);pointer-events:none}
+    .orbit{position:absolute;z-index:-1;right:-240px;top:16%;width:min(850px,95vw);aspect-ratio:1;border:1px solid rgba(255,255,255,.075);border-radius:50%;pointer-events:none}
+    .orbit::before,.orbit::after{content:"";position:absolute;inset:11%;border:1px solid rgba(255,255,255,.07);border-radius:50%}
+    .orbit::after{inset:22%;border-color:rgba(255,255,255,.045)}
+    .hero-content{position:relative;width:100%;max-width:1120px}
+    .hero h1{margin:28px 0 33px;font-size:clamp(66px,10.3vw,158px);line-height:.98;font-weight:800;letter-spacing:-.094em}
+    .hero h1 em,.section-title em,.closing h2 em{font-family:Georgia,Times New Roman,serif;font-weight:400;letter-spacing:-.085em}
+    .hero h1 em{font-size:.99em}
+    .hero-copy{margin:0;max-width:460px;color:#a8a8a8;font-size:clamp(14px,1.35vw,18px);line-height:1.85;font-weight:400}
+    .hero-bottom{position:absolute;bottom:50px;left:clamp(24px,9vw,148px);right:clamp(24px,9vw,148px);display:flex;align-items:center;justify-content:space-between}
+    .scroll-link{display:inline-flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+    .scroll-arrow{display:grid;place-items:center;width:42px;height:42px;border:1px solid #606060;border-radius:50%;font-size:20px;transition:transform .25s}
+    .scroll-link:hover .scroll-arrow{transform:translateY(5px)}
+    .counter{font-size:11px;color:#898989;letter-spacing:.18em}
+    .section-heading{padding:125px clamp(24px,9vw,148px) 85px;border-top:1px solid var(--line)}
+    .section-title{margin:22px 0 0;font-size:clamp(49px,7.6vw,110px);line-height:1.07;font-weight:700;letter-spacing:-.083em}
+    .projects{padding-bottom:65px}
+    .project{max-width:1650px;margin:0 auto 110px;padding:0 clamp(18px,4.6vw,70px)}
+    .project-index{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:19px;padding:0 5px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#999}
+    .project-card{position:relative;min-height:570px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;padding:clamp(28px,5.1vw,77px);border:1px solid #303030;border-radius:4px;background:#151515;isolation:isolate;transition:border-color .3s ease}
+    .project-card:hover{border-color:#727272}
+    .project-card::before{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(ellipse at 50% 55%,rgba(255,255,255,.09),transparent 52%);pointer-events:none}
+    .project-card::after{content:"";position:absolute;z-index:-1;width:540px;height:540px;border:1px solid rgba(255,255,255,.055);border-radius:50%;left:50%;top:48%;transform:translate(-50%,-50%)}
+    .card-head{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .card-tag{font-size:10px;color:#b4b4b4;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+    .round-link{display:grid;place-items:center;width:48px;height:48px;border:1px solid #626262;border-radius:50%;font-size:25px;transition:background .25s,color .25s,transform .25s}
+    a.round-link:hover{background:#fff;color:#000;transform:rotate(45deg)}
+    .round-link.static{color:#aaa;border-color:#444;font-size:20px}
+    .project-logo{margin:auto;display:flex;align-items:center;justify-content:center;gap:22px;min-height:240px;width:100%}
+    .project-logo img{display:block;width:clamp(70px,10vw,134px);height:clamp(70px,10vw,134px);object-fit:contain}
+    .project-logo .wordmark{font-size:clamp(47px,8.5vw,115px);font-weight:700;line-height:1;letter-spacing:-.09em;white-space:nowrap}
+    .project-logo .wordmark span{color:#999}
+    .mondoo-lockup{gap:clamp(10px,2vw,28px)}
+    .mondoo-lockup img{width:clamp(66px,9.5vw,125px);height:clamp(66px,9.5vw,125px)}
+    .mondoo-lockup .divider{height:clamp(62px,8.5vw,116px);width:2px;background:#666;flex:none}
+    .mondoo-lockup .wordmark{font-size:clamp(45px,7.6vw,100px);font-weight:600;letter-spacing:-.075em}
+    .the32-card{background:#111}
+    .the32-card::before{background:radial-gradient(ellipse at 50% 50%,rgba(255,255,255,.075),transparent 56%)}
+    .the32-lockup img{width:clamp(75px,11vw,140px);height:clamp(75px,11vw,140px)}
+    .the32-lockup .wordmark{font-size:clamp(53px,9.2vw,120px);font-weight:800;letter-spacing:-.08em}
+    .card-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:30px}
+    .card-foot h3{font-size:21px;letter-spacing:-.045em;margin:0 0 9px}
+    .card-foot p{max-width:380px;margin:0;color:#aaa;font-size:13px;line-height:1.85}
+    .pill{white-space:nowrap;border:1px solid #565656;color:#b7b7b7;border-radius:999px;padding:10px 16px;font-size:10px;letter-spacing:.13em;font-weight:700;text-transform:uppercase}
+    a.pill:hover{border-color:#fff;color:#fff}
+    .closing{border-top:1px solid var(--line);padding:140px clamp(24px,9vw,148px) 38px;min-height:580px;position:relative;overflow:hidden}
+    .closing h2{font-size:clamp(60px,9vw,128px);line-height:1.05;letter-spacing:-.084em;margin:27px 0 40px;font-weight:700}
+    .closing p{font-size:15px;line-height:1.9;color:#999;max-width:500px}
+    .site-footer{display:flex;align-items:center;justify-content:space-between;gap:20px;border-top:1px solid var(--line);margin-top:120px;padding-top:30px;font-size:10px;letter-spacing:.15em;color:#8b8b8b;font-weight:700;text-transform:uppercase}
+    .reveal{opacity:0;transform:translateY(35px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:680px){
+      .site-header{height:70px;padding:0 24px}
+      .brand{font-size:23px}
+      .nav{gap:17px}
+      .nav a{font-size:10px}
+      .nav .nav-outline{padding:10px 12px}
+      .hero{padding:125px 27px 130px;min-height:740px}
+      .hero h1{font-size:clamp(60px,13.6vw,92px);margin:25px 0 27px}
+      .hero-bottom{left:27px;right:27px;bottom:35px}
+      .orbit{right:-340px;top:23%;width:690px}
+      .section-heading{padding:91px 27px 60px}
+      .project{margin-bottom:65px}
+      .project-card{min-height:485px;padding:28px 23px}
+      .project-logo{gap:12px;min-height:210px}
+      .mondoo-lockup{gap:10px}
+      .mondoo-lockup img{width:clamp(55px,13vw,85px);height:clamp(55px,13vw,85px)}
+      .mondoo-lockup .divider{height:clamp(52px,12vw,80px);width:1px}
+      .mondoo-lockup .wordmark{font-size:clamp(42px,9.2vw,70px)}
+      .the32-lockup{gap:8px}
+      .the32-lockup img{width:clamp(62px,16vw,95px);height:clamp(62px,16vw,95px)}
+      .the32-lockup .wordmark{font-size:clamp(53px,11vw,78px)}
+      .card-foot{align-items:flex-start;flex-direction:column;gap:20px}
+      .card-foot p{font-size:12px}
+      .card-foot h3{font-size:19px}
+      .closing{padding:95px 27px 30px;min-height:560px}
+      .site-footer{flex-wrap:wrap;margin-top:85px}
+    }
+    @media(max-width:370px){
+      .nav{gap:11px}
+      .nav .nav-outline{padding:9px}
+      .hero h1{font-size:56px}
+      .project-logo .wordmark{font-size:40px}
+      .project-index{font-size:9px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+      .reveal{opacity:1;transform:none}
+    }
+  </style>
+  <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 </head>
-<body class="bg-black text-white overflow-hidden font-['Space_Grotesk']">
-  <div id="root"></div>
-
-  <script type="text/babel">
-    function App() {
-      return (
-        <div className="relative min-h-screen bg-black text-white overflow-hidden flex items-center justify-center">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-[500px] h-[500px] bg-white/10 blur-3xl rounded-full"></div>
+<body>
+  <a class="skip" href="#projects">Skip to projects</a>
+  <div class="progress" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Salem home">salem<span>.</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#projects">Projects</a>
+      <a class="nav-outline" href="#family">Our family ↗</a>
+    </nav>
+  </header>
+  <main id="home">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="orbit" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="kicker">A family &middot; Many ideas</div>
+        <h1 id="hero-title">One<br><em>family.</em><br>Infinite<br><em>ideas.</em></h1>
+        <p class="hero-copy">A home for the people, ideas, and projects of the Salem family. Different minds, one shared name.</p>
+      </div>
+      <div class="hero-bottom">
+        <a href="#projects" class="scroll-link"><span class="scroll-arrow" aria-hidden="true">↓</span>Scroll to explore</a>
+        <span class="counter">01 / 03</span>
+      </div>
+    </section>
+    <section id="projects" class="projects" aria-labelledby="projects-title">
+      <div class="section-heading">
+        <div class="kicker reveal">01 / Selected projects</div>
+        <h2 class="section-title reveal" id="projects-title">Things we're<br><em>building.</em></h2>
+      </div>
+      <article class="project" aria-labelledby="mondoo-title">
+        <div class="project-index reveal"><span>01 / Mondoo</span><span>Creative workspace</span></div>
+        <div class="project-card reveal">
+          <div class="card-head">
+            <span class="card-tag">Featured project</span>
+            <a class="round-link" href="https://mondoo.ly" target="_blank" rel="noopener noreferrer" aria-label="Visit Mondoo (opens in new tab)">↗</a>
           </div>
-
-          <h1 className="relative z-10 text-4xl md:text-[6rem] font-black uppercase tracking-[0.04em] text-white select-none">
-            Salem
-          </h1>
-
-          {/* footer */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/40 text-xs tracking-[0.3em] uppercase text-center">
-            © 1999 - 2026 | All Rights Reserved | Salem
+          <div class="project-logo mondoo-lockup">
+            <img src="assets/mondoo.svg" width="512" height="512" alt="Mondoo logo" loading="lazy">
+            <span class="divider" aria-hidden="true"></span>
+            <span class="wordmark" id="mondoo-title">mondoo</span>
+          </div>
+          <div class="card-foot">
+            <div>
+              <h3>One space for ideas.</h3>
+              <p>A creative workspace bringing documents, whiteboards, and design together.</p>
+            </div>
+            <a class="pill" href="https://mondoo.ly" target="_blank" rel="noopener noreferrer">Visit mondoo.ly ↗</a>
           </div>
         </div>
-      )
-    }
-
-    const root = ReactDOM.createRoot(document.getElementById('root'))
-    root.render(<App />)
+      </article>
+      <article class="project" aria-labelledby="the32-title">
+        <div class="project-index reveal"><span>02 / THE32</span><span>Creative tools</span></div>
+        <div class="project-card the32-card reveal">
+          <div class="card-head">
+            <span class="card-tag">Family projects</span>
+            <span class="round-link static" aria-hidden="true">✳</span>
+          </div>
+          <div class="project-logo the32-lockup">
+            <img src="assets/the32.svg" width="150" height="150" alt="THE32 logo" loading="lazy">
+            <span class="wordmark" id="the32-title">THE32</span>
+          </div>
+          <div class="card-foot">
+            <div>
+              <h3>A canvas for possibilities.</h3>
+              <p>Creative tools and experiments built around ideas, visual thinking, and making.</p>
+            </div>
+            <span class="pill">Creative technology</span>
+          </div>
+        </div>
+      </article>
+    </section>
+    <section id="family" class="closing" aria-labelledby="family-title">
+      <div class="kicker reveal">02 / The Salem family</div>
+      <h2 class="reveal" id="family-title">Different<br>minds.<br><em>One name.</em></h2>
+      <p class="reveal">More than a portfolio. A growing collection of our family's stories, ambitions, and the things we create together.</p>
+      <footer class="site-footer">
+        <span>© 2026 Salem</span>
+        <span>Rooted in Libya &middot; Built for the world</span>
+      </footer>
+    </section>
+  </main>
+  <script>
+    (() => {
+      const bar = document.querySelector('.progress');
+      const updateProgress = () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (max > 0 ? window.scrollY / max * 100 : 0) + '%';
+      };
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress, { passive: true });
+      updateProgress();
+      const revealElements = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+        revealElements.forEach(element => observer.observe(element));
+      } else {
+        revealElements.forEach(element => element.classList.add('visible'));
+      }
+    })();
   </script>
 </body>
 </html>
