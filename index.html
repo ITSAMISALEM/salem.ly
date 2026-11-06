@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#080808">
-  <meta name="description" content="Salem — one family, infinite ideas. Discover Mondoo, THE32, and the creations of the Salem family.">
+  <meta name="description" content="Salem — one family, infinite ideas. The projects and creations of the Salem family.">
   <meta property="og:title" content="Salem — One family. Infinite ideas.">
-  <meta property="og:description" content="Discover projects and creations from the Salem family.">
+  <meta property="og:description" content="Family, projects and creations.">
   <meta property="og:type" content="website">
   <link rel="icon" href="assets/salem-mark.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,260 +14,103 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <title>Salem — Family & Projects</title>
   <style>
-    :root { color-scheme:dark; --bg:#080808; --fg:#f7f7f5; --secondary:#a6a6a6; }
-    *, *::before, *::after {box-sizing:border-box}
-    html, body {margin:0; width:100%; height:100%; overflow:hidden; background:var(--bg)}
-    body {font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--fg);-webkit-font-smoothing:antialiased}
-    button {font:inherit;cursor:pointer}
+    :root {color-scheme:dark;--background:#080808;--foreground:#f7f7f5;--muted:#999}
+    *,*::before,*::after {box-sizing:border-box}
+    html,body {height:100%;width:100%;margin:0;background:var(--background);overflow:hidden}
+    body {font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--foreground);-webkit-font-smoothing:antialiased}
     a {color:inherit;text-decoration:none}
-    button:focus-visible, a:focus-visible {outline:2px solid #fff;outline-offset:5px}
-    ::selection {color:#080808;background:#fff}
-    .site {height:100vh;height:100dvh;min-height:0;display:flex;flex-direction:column;overflow:hidden;position:relative;isolation:isolate}
-    .site::before {content:"";position:absolute;z-index:-1;left:-30vw;top:-35vh;width:92vw;height:112vh;background:radial-gradient(ellipse,rgba(255,255,255,.045),transparent 62%);pointer-events:none}
-    .site-header {display:flex;align-items:center;justify-content:space-between;flex:0 0 auto;height:86px;padding:0 clamp(24px,5.8vw,92px);border-bottom:1px solid #222;gap:15px}
-    .brand {font-size:26px;font-weight:800;letter-spacing:-.095em;line-height:1}
-    .brand span {color:#777}
-    .header-right {display:flex;align-items:center;gap:clamp(15px,2vw,32px)}
-    .header-note {font-size:10px;letter-spacing:.2em;font-weight:700;color:#888;white-space:nowrap}
-    .header-rule {height:22px;width:1px;background:#383838}
-    .header-family {color:#dedede;font-size:11px;letter-spacing:.14em;font-weight:700}
-    .main {display:grid;grid-template-columns:minmax(0,44%) minmax(0,56%);flex:1;min-height:0}
-    .intro {position:relative;min-width:0;padding:clamp(28px,4.8vw,82px) clamp(30px,5.8vw,92px);display:flex;flex-direction:column;justify-content:center}
-    .eyebrow {font-size:10px;letter-spacing:.25em;color:#aaa;font-weight:700;line-height:1.5;text-transform:uppercase}
-    .eyebrow::before {content:"";display:inline-block;vertical-align:middle;margin-right:13px;width:22px;height:1px;background:#aaa}
-    .intro h1 {font-size:clamp(51px,6vw,100px);font-weight:750;letter-spacing:-.09em;line-height:1.08;margin:25px 0 27px}
-    .intro h1 em {font-family:Georgia,Times New Roman,serif;font-weight:400;letter-spacing:-.08em}
-    .intro-copy {max-width:360px;font-size:clamp(13px,1.05vw,16px);line-height:1.85;color:#a8a8a8;margin:0}
-    .intro-meta {position:absolute;left:clamp(30px,5.8vw,92px);bottom:35px;font-size:10px;letter-spacing:.15em;color:#777;font-weight:600}
-    .showcase {border-left:1px solid #242424;position:relative;min-width:0;overflow:hidden;background:radial-gradient(ellipse at 50% 47%,#1d1d1d 0%,#121212 46%,#090909 80%)}
-    .showcase::before,.showcase::after {content:"";position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,.055);width:min(75vh,84%);aspect-ratio:1;border-radius:50%;pointer-events:none}
-    .showcase::after {width:min(55vh,62%);border-color:rgba(255,255,255,.045)}
-    .showcase-header {position:absolute;z-index:3;top:clamp(25px,4.4vw,60px);left:clamp(24px,4vw,66px);right:clamp(24px,4vw,66px);display:flex;align-items:center;justify-content:space-between;gap:10px}
-    .showcase-header span {font-size:10px;font-weight:700;letter-spacing:.22em;color:#aaa}
-    .showcase-header .edition {color:#777}
-    .slider {position:absolute;inset:0;overflow:hidden}
-    .slide {position:absolute;inset:0;padding:clamp(65px,9vh,105px) clamp(24px,5vw,78px) clamp(100px,15vh,155px);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:translate3d(104%,0,0);opacity:0;pointer-events:none;transition:transform 920ms cubic-bezier(.22,1,.36,1),opacity 740ms ease;will-change:transform}
-    .slide.active {transform:translate3d(0,0,0);opacity:1;pointer-events:auto}
-    .slide.leaving {transform:translate3d(-104%,0,0);opacity:0}
-    .project-lockup {width:100%;display:flex;align-items:center;justify-content:center;gap:clamp(12px,2.6vw,27px);min-height:140px}
-    .project-lockup img {width:clamp(65px,9vw,145px);height:clamp(65px,9vw,145px);object-fit:contain;display:block;flex:none}
-    .project-lockup .divider {width:1.5px;height:clamp(65px,9vw,133px);background:#727272;flex:none}
-    .project-lockup strong {font-size:clamp(49px,7.6vw,112px);font-weight:600;line-height:1.12;letter-spacing:-.085em;white-space:nowrap}
-    .the32-lockup {gap:clamp(12px,2vw,24px)}
-    .the32-lockup img {width:clamp(77px,9vw,135px);height:clamp(77px,9vw,135px)}
-    .the32-lockup strong {font-weight:800;font-size:clamp(52px,7.3vw,110px);letter-spacing:-.09em}
-    .project-meta {position:absolute;bottom:clamp(100px,12vh,145px);left:clamp(24px,5vw,78px);right:clamp(24px,5vw,78px);display:flex;justify-content:space-between;align-items:flex-end;gap:18px}
-    .project-category {font-size:10px;letter-spacing:.15em;color:#8c8c8c;font-weight:700;margin:0 0 10px;text-transform:uppercase}
-    .project-meta h2 {font-size:clamp(18px,1.8vw,26px);font-weight:650;letter-spacing:-.045em;margin:0 0 7px}
-    .project-meta p {font-size:clamp(11px,1vw,13px);color:#999;line-height:1.6;max-width:310px;margin:0}
-    .project-link {height:43px;width:43px;flex:none;display:grid;place-items:center;border-radius:50%;border:1px solid #666;font-size:24px;transition:background .2s,color .2s}
-    .project-link:hover {background:white;color:black}
-    .showcase-controls {position:absolute;z-index:4;bottom:0;left:0;right:0;height:76px;border-top:1px solid #303030;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(24px,4vw,66px);gap:12px}
-    .counter {font-size:12px;letter-spacing:.18em;font-weight:700}
-    .counter .total {color:#737373}
-    .controls-right {display:flex;align-items:center;gap:15px}
-    .dots {display:flex;gap:9px;align-items:center}
-    .dots button {border:0;background:#555;height:4px;width:18px;border-radius:4px;padding:0;transition:width .3s,background .3s}
-    .dots button.active {width:37px;background:#fff}
-    .next {border:1px solid #595959;border-radius:50%;height:37px;width:37px;background:transparent;color:#fff;display:grid;place-items:center;font-size:23px;line-height:1;transition:background .2s,color .2s}
-    .next:hover {background:#fff;color:#080808}
-    .timer {position:absolute;z-index:4;bottom:0;left:0;height:2px;width:0;background:#fff}
-    .timer.animating {animation:fill 6s linear forwards}
-    @keyframes fill {from{width:0}to{width:100%}}
-    .footer {height:52px;display:flex;justify-content:space-between;align-items:center;padding:0 clamp(24px,5.8vw,92px);border-top:1px solid #222;flex:none;font-size:10px;letter-spacing:.16em;color:#777;font-weight:650}
-    @media(max-width:820px){
-      .site-header {height:67px;padding:0 24px}
-      .brand {font-size:23px}
-      .header-note {display:none}
-      .header-rule {display:none}
-      .main {grid-template-columns:1fr;grid-template-rows:minmax(0,39%) minmax(0,61%)}
-      .intro {padding:12px 27px;justify-content:center}
-      .intro h1 {font-size:clamp(32px,9.2vw,48px);margin:9px 0 8px;line-height:1.07}
-      .intro h1 br {display:none}
-      .intro-copy {font-size:11px;line-height:1.55;max-width:370px}
-      .eyebrow {font-size:8px}
-      .intro-meta {display:none}
-      .showcase {border-left:0;border-top:1px solid #2d2d2d}
-      .showcase-header {top:15px;left:25px;right:25px}
-      .showcase-header span {font-size:9px}
-      .slide {padding:33px 25px 80px}
-      .project-lockup {min-height:70px;gap:12px}
-      .project-lockup img {width:clamp(53px,12vw,87px);height:clamp(53px,12vw,87px)}
-      .project-lockup .divider {height:clamp(52px,12vw,80px);width:1px}
-      .project-lockup strong {font-size:clamp(38px,9vw,70px)}
-      .the32-lockup img {width:clamp(57px,14vw,86px);height:clamp(57px,14vw,86px)}
-      .the32-lockup strong {font-size:clamp(43px,11vw,74px)}
-      .project-meta {bottom:71px;left:25px;right:25px}
-      .project-category {font-size:8px;margin-bottom:5px}
-      .project-meta h2 {font-size:16px;margin-bottom:4px}
-      .project-meta p {font-size:10px;max-width:250px;line-height:1.5}
-      .project-link {width:35px;height:35px;font-size:20px}
-      .showcase-controls {height:53px;padding:0 24px}
-      .counter {font-size:11px}
-      .next {height:30px;width:30px;font-size:18px}
-      .footer {height:38px;padding:0 24px;font-size:8px}
+    a:focus-visible {outline:2px solid white;outline-offset:8px;border-radius:5px}
+    ::selection {background:#fff;color:#080808}
+    .page {min-height:0;height:100vh;height:100dvh;max-width:100%;display:flex;align-items:center;flex-direction:column;position:relative;isolation:isolate;overflow:hidden}
+    .page::before {content:"";position:absolute;z-index:-1;pointer-events:none;inset:25% -10% 3%;background:radial-gradient(ellipse at 50% 46%,rgba(255,255,255,.05),transparent 63%)}
+    .navigation {position:absolute;z-index:4;top:clamp(22px,5.3vh,58px);left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:clamp(22px,3vw,42px);width:max-content;max-width:calc(100% - 32px);min-height:58px;padding:0 24px;border:1px solid #2d2d2d;border-radius:999px;background:#171717;box-shadow:0 14px 50px #0006}
+    .brand {font-weight:800;letter-spacing:-.095em;font-size:22px;line-height:1;white-space:nowrap}
+    .brand .dot {color:#858585}
+    .nav-divider {width:1px;height:24px;background:#333}
+    .nav-item {color:#a7a7a7;font-size:11px;font-weight:700;letter-spacing:.08em;white-space:nowrap}
+    .nav-item.active {color:#fff}
+    .stage {width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(100px,15vh,150px) 0 55px;gap:clamp(52px,9vh,96px)}
+    .marquee {width:100%;overflow:hidden;position:relative;flex:none;padding:18px 0;mask-image:linear-gradient(to right,transparent 0%,black 10%,black 90%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,black 10%,black 90%,transparent 100%)}
+    .marquee-track {display:flex;align-items:center;width:max-content;animation:travel 28s linear infinite;will-change:transform}
+    .marquee:hover .marquee-track,.marquee:focus-within .marquee-track {animation-play-state:paused}
+    .marquee-set {display:flex;align-items:center;gap:clamp(110px,13vw,240px);padding-right:clamp(110px,13vw,240px);flex:none}
+    .logo-item {display:grid;place-items:center;width:clamp(72px,8.7vw,122px);height:clamp(86px,10vw,140px);flex:none}
+    .logo-item img {width:clamp(65px,7.2vw,105px);height:clamp(65px,7.2vw,105px);display:block;object-fit:contain;transition:transform .3s ease,opacity .3s ease;opacity:.92}
+    .logo-item:hover img {transform:scale(1.1);opacity:1}
+    @keyframes travel {from {transform:translate3d(0,0,0)}to {transform:translate3d(-50%,0,0)}}
+    .copy {text-align:center;padding:0 24px;max-width:930px}
+    .eyebrow {display:inline-block;padding:8px 14px;border:1px solid #282828;border-radius:999px;font-size:10px;line-height:1;letter-spacing:.1em;font-weight:650;color:#c7c7c7}
+    h1 {margin:24px 0 15px;font-size:clamp(38px,5.3vw,73px);line-height:1.14;letter-spacing:-.073em;font-weight:750}
+    h1 em {font-family:Georgia,Times New Roman,serif;letter-spacing:-.065em;font-weight:400}
+    .subtitle {margin:0 auto;max-width:560px;color:#999;font-size:clamp(12px,1.1vw,16px);line-height:1.85}
+    .footer {position:absolute;bottom:clamp(18px,4vh,35px);left:clamp(24px,6vw,90px);right:clamp(24px,6vw,90px);display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:10px;color:#777;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+    .sr-only {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:720px){
+      .navigation {min-height:51px;padding:0 18px;gap:20px}
+      .brand {font-size:20px}
+      .nav-item {font-size:10px}
+      .stage {gap:clamp(28px,5vh,65px);padding:120px 0 65px}
+      .marquee {padding:3px 0}
+      .marquee-set {gap:85px;padding-right:85px}
+      .logo-item {width:72px;height:90px}
+      .logo-item img {width:63px;height:63px}
+      h1 {font-size:clamp(34px,9vw,55px);margin:18px 0 10px}
+      .subtitle {font-size:12px;max-width:365px}
+      .footer {font-size:8px;left:22px;right:22px;bottom:21px}
     }
-    @media(max-width:820px) and (max-height:650px){
-      .main {grid-template-rows:minmax(0,35%) minmax(0,65%)}
-      .intro h1 {font-size:clamp(28px,7vw,35px);margin:5px 0}
-      .intro-copy {font-size:10px;line-height:1.4}
-      .project-lockup {transform:scale(.8)}
-      .project-meta h2 {font-size:14px}
-      .project-meta p {font-size:9px}
-    }
-    @media(min-width:821px) and (max-height:610px){
-      .site-header {height:60px}
-      .footer {height:34px}
-      .intro h1 {font-size:clamp(39px,5vw,70px);margin:15px 0}
-      .project-meta {bottom:85px}
-      .showcase-controls {height:58px}
-      .slide {padding-bottom:90px}
-      .project-lockup {transform:scale(.75)}
+    @media(max-height:550px){
+      .navigation {top:14px;min-height:46px}
+      .stage {padding:76px 0 38px;gap:10px}
+      .marquee {padding:0}
+      .logo-item {height:68px}
+      .logo-item img {width:55px;height:55px}
+      .eyebrow {font-size:8px;padding:6px 10px}
+      h1 {font-size:clamp(29px,5vh,45px);margin:10px 0 5px}
+      .subtitle {font-size:10px;line-height:1.5}
+      .footer {bottom:8px}
     }
     @media(prefers-reduced-motion:reduce){
-      .slide {transition:none;will-change:auto}
-      .timer.animating {animation:none}
-      *,*::before,*::after {scroll-behavior:auto!important}
+      .marquee-track {animation:none;will-change:auto}
+      .logo-item img {transition:none}
     }
   </style>
 </head>
 <body>
-  <div class="site">
-    <header class="site-header">
-      <div class="brand" aria-label="Salem">salem<span>.</span></div>
-      <div class="header-right">
-        <span class="header-note">A FAMILY · MANY IDEAS</span>
-        <span class="header-rule" aria-hidden="true"></span>
-        <span class="header-family">FAMILY PROJECTS / 2026</span>
-      </div>
+  <div class="page">
+    <header class="navigation" aria-label="Site header">
+      <span class="brand" aria-label="Salem">salem<span class="dot">.</span></span>
+      <span class="nav-divider" aria-hidden="true"></span>
+      <span class="nav-item active">Family Projects</span>
+      <span class="nav-item">Est. 2026</span>
     </header>
-    <main class="main">
-      <section class="intro" aria-labelledby="main-title">
-        <div>
-          <div class="eyebrow">THE SALEM FAMILY</div>
-          <h1 id="main-title">One <br><em>family.</em> <br>Infinite <br><em>ideas.</em></h1>
-          <p class="intro-copy">A home for the people, ideas, and projects of the Salem family. Different minds, one shared name.</p>
-        </div>
-        <span class="intro-meta">ROOTED IN LIBYA · BUILT FOR THE WORLD</span>
-      </section>
-      <section class="showcase" aria-label="Featured Salem family projects" aria-roledescription="carousel">
-        <div class="showcase-header" aria-hidden="true">
-          <span>SELECTED PROJECTS</span>
-          <span class="edition">AUTOMATIC SHOWCASE ↙</span>
-        </div>
-        <div class="slider">
-          <article class="slide active" data-project="mondoo" aria-label="Project 1 of 2: Mondoo" aria-roledescription="slide">
-            <div class="project-lockup">
-              <img src="assets/mondoo.svg" width="512" height="512" alt="Mondoo logo">
-              <span class="divider" aria-hidden="true"></span>
-              <strong>mondoo</strong>
-            </div>
-            <div class="project-meta">
-              <div>
-                <div class="project-category">01 / CREATIVE WORKSPACE</div>
-                <h2>One space for ideas.</h2>
-                <p>Documents, whiteboards and design in one creative platform.</p>
-              </div>
-              <a class="project-link" href="https://mondoo.ly" target="_blank" rel="noopener noreferrer" aria-label="Visit Mondoo website in a new tab">↗</a>
-            </div>
-          </article>
-          <article class="slide" data-project="the32" aria-label="Project 2 of 2: THE32" aria-roledescription="slide" aria-hidden="true" inert>
-            <div class="project-lockup the32-lockup">
-              <img src="assets/the32.svg" width="150" height="150" alt="THE32 logo">
-              <strong>THE32</strong>
-            </div>
-            <div class="project-meta">
-              <div>
-                <div class="project-category">02 / CREATIVE TECHNOLOGY</div>
-                <h2>A canvas for possibilities.</h2>
-                <p>Creative tools and experiments for visual thinking and making.</p>
-              </div>
-            </div>
-          </article>
-        </div>
-        <div class="showcase-controls">
-          <span class="counter"><span id="active-count">01</span><span class="total"> / 02</span></span>
-          <div class="controls-right">
-            <div class="dots" aria-label="Choose project">
-              <button class="active" aria-label="Show Mondoo" aria-current="true" data-index="0"></button>
-              <button aria-label="Show THE32" data-index="1"></button>
-            </div>
-            <button class="next" id="next-project" aria-label="Next project" title="Next project">←</button>
+    <main class="stage">
+      <section class="marquee" aria-label="Salem family projects: Mondoo and THE32">
+        <div class="marquee-track" aria-hidden="true">
+          <div class="marquee-set">
+            <span class="logo-item"><img src="assets/mondoo.svg" alt="" width="512" height="512"></span>
+            <span class="logo-item"><img src="assets/the32.svg" alt="" width="150" height="150"></span>
+            <span class="logo-item"><img src="assets/mondoo.svg" alt="" width="512" height="512"></span>
+            <span class="logo-item"><img src="assets/the32.svg" alt="" width="150" height="150"></span>
+          </div>
+          <div class="marquee-set">
+            <span class="logo-item"><img src="assets/mondoo.svg" alt="" width="512" height="512"></span>
+            <span class="logo-item"><img src="assets/the32.svg" alt="" width="150" height="150"></span>
+            <span class="logo-item"><img src="assets/mondoo.svg" alt="" width="512" height="512"></span>
+            <span class="logo-item"><img src="assets/the32.svg" alt="" width="150" height="150"></span>
           </div>
         </div>
-        <div class="timer animating" aria-hidden="true"></div>
       </section>
+      <section class="copy" aria-labelledby="page-title">
+        <span class="eyebrow">THE SALEM FAMILY</span>
+        <h1 id="page-title">One family. <em>Infinite ideas.</em></h1>
+        <p class="subtitle">A home for the people, ideas, and projects of the Salem family. Different minds, one shared name.</p>
+      </section>
+      <div class="sr-only">Featured projects: Mondoo, a creative workspace at <a href="https://mondoo.ly">mondoo.ly</a>, and THE32, creative tools and visual experiments.</div>
     </main>
-    <footer class="footer"><span>© 2026 SALEM</span><span>FAMILY · PROJECTS · CREATIONS</span></footer>
+    <footer class="footer">
+      <span>© 2026 SALEM</span>
+      <span>ROOTED IN LIBYA · BUILT FOR THE WORLD</span>
+    </footer>
   </div>
-  <script>
-  (() => {
-    const showcase = document.querySelector('.showcase');
-    const slides = Array.from(showcase.querySelectorAll('.slide'));
-    const dots = Array.from(showcase.querySelectorAll('.dots button'));
-    const counter = showcase.querySelector('#active-count');
-    const progress = showcase.querySelector('.timer');
-    const next = showcase.querySelector('#next-project');
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const interval = 6000;
-    let current = 0;
-    let timer = null;
-    let paused = false;
-
-    function display(index) {
-      const target = (index + slides.length) % slides.length;
-      if (target === current) return;
-      const leaving = slides[current];
-      const entering = slides[target];
-      leaving.classList.remove('active');
-      leaving.classList.add('leaving');
-      leaving.setAttribute('aria-hidden', 'true');
-      leaving.setAttribute('inert', '');
-      entering.classList.remove('leaving');
-      entering.removeAttribute('aria-hidden');
-      entering.removeAttribute('inert');
-      entering.classList.add('active');
-      current = target;
-      counter.textContent = String(current + 1).padStart(2, '0');
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === current);
-        if (i === current) dot.setAttribute('aria-current', 'true');
-        else dot.removeAttribute('aria-current');
-      });
-    }
-    slides.forEach(slide => {
-      slide.addEventListener('transitionend', event => {
-        if (event.propertyName === 'transform' && !slide.classList.contains('active')) {
-          slide.classList.remove('leaving');
-        }
-      });
-    });
-    function stop() {
-      if (timer !== null) { window.clearTimeout(timer); timer = null; }
-      progress.classList.remove('animating');
-    }
-    function start() {
-      stop();
-      if (reduced.matches || paused || document.hidden) return;
-      // Restart the CSS indicator each time a new project begins.
-      void progress.offsetWidth;
-      progress.classList.add('animating');
-      timer = window.setTimeout(() => { display(current + 1); start(); }, interval);
-    }
-    function advance(index) {
-      display(index);
-      start();
-    }
-    next.addEventListener('click', () => advance(current + 1));
-    dots.forEach((dot, index) => dot.addEventListener('click', () => advance(index)));
-    showcase.addEventListener('focusin', () => { paused = true; stop(); });
-    showcase.addEventListener('focusout', event => {
-      if (!showcase.contains(event.relatedTarget)) { paused = false; start(); }
-    });
-    document.addEventListener('visibilitychange', start);
-    reduced.addEventListener('change', start);
-    start();
-  })();
-  </script>
 </body>
 </html>
